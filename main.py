@@ -1,6 +1,7 @@
 from stats import get_num_words
 from stats import get_num_chars
 from stats import get_sorted_dict
+import sys
 
 
 def get_book_text(filepath: str) -> str:
@@ -11,7 +12,11 @@ def get_book_text(filepath: str) -> str:
 
 
 def main():
-    filepath = "books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    filepath = sys.argv[1]
     filecontents = get_book_text(filepath)
     sorted_chars = get_sorted_dict(get_num_chars(filecontents))
     print("============ BOOKBOT ============")
